@@ -49,68 +49,50 @@
     </div>
   </div>
 
-    <section id="user_table">
-    <div class="container">
-  <h2>LIST OF <span>CUSTOMERS </span> <small></small></h2>
-  <ul class="responsive-table">
-    <li class="table-header" style="position: sticky;top: 0">
-      <div class="col col-1 header">Id</div>
-      <div class="col col-2 header">Customer Name</div>
-      <div class="col col-3 header">Email</div>
-      <div class="col col-4 header">Amount</div>
-      <div class="col col-5 header"></div>
-      </li>
-        <li class="table-row">
-          <div class="col col-1" data-label="JId"></div>
-          <div class="col col-2" data-label="Customer Name"> </div>
-          <div class="col col-3" data-label="Amount"> </div>
-          <div class="col col-4" data-label="Payment Status"></div>
-        </li>"
+  <section id="user_table">
+          <div class="container">
+            <h2>LIST OF <span> CUSTOMERS </span> </h2>
+            <ul class="responsive-table">
+                <li class="table-header" style="position: sticky;top:0" ><div class="col col-1 header">Id</div>
+                  <div class="col col-2 header">Customer Name</div>
+                  <div class="col col-3 header">Email</div>
+                  <div class="col col-4 header">Amount</div>
+                  <div class="col col-5 header">Action</div>
+                </li>
 
-    <li class="table-row">
-      <div class="col col-1" data-label="Job Id">42257</div>
-      <div class="col col-2" data-label="Customer Name">John Smith</div>
-      <div class="col col-3" data-label="Amount">$341</div>
-      <div class="col col-4" data-label="Payment Status">Pending</div>
-    </li>
-    <li class="table-row">
-      <div class="col col-1" data-label="Job Id">42311</div>
-      <div class="col col-2" data-label="Customer Name">John Carpenter</div>
-      <div class="col col-3" data-label="Amount">$115</div>
-      <div class="col col-4" data-label="Payment Status">Pending</div>
-    </li>
-    <li class="table-row">
-      <div class="col col-1" data-label="Job Id">42311</div>
-      <div class="col col-2" data-label="Customer Name">John Carpenter</div>
-      <div class="col col-3" data-label="Amount">$115</div>
-      <div class="col col-4" data-label="Payment Status">Pending</div>
-    </li>
-    <li class="table-row">
-      <div class="col col-1" data-label="Job Id">42311</div>
-      <div class="col col-2" data-label="Customer Name">John Carpenter</div>
-      <div class="col col-3" data-label="Amount">$115</div>
-      <div class="col col-4" data-label="Payment Status">Pending</div>
-    </li>
-    <li class="table-row">
-      <div class="col col-1" data-label="Job Id">42311</div>
-      <div class="col col-2" data-label="Customer Name">John Carpenter</div>
-      <div class="col col-3" data-label="Amount">$115</div>
-      <div class="col col-4" data-label="Payment Status">Pending</div>
-    </li>
-    <li class="table-row">
-      <div class="col col-1" data-label="Job Id">42311</div>
-      <div class="col col-2" data-label="Customer Name">John Carpenter</div>
-      <div class="col col-3" data-label="Amount">$115</div>
-      <div class="col col-4" data-label="Payment Status">Pending</div>
-    </li>
-    <li class="table-row">
-      <div class="col col-1" data-label="Job Id">42311</div>
-      <div class="col col-2" data-label="Customer Name">John Carpenter</div>
-      <div class="col col-3" data-label="Amount">$115</div>
-      <div class="col col-4" data-label="Payment Status">Pending</div>
-    </li>
-  </ul>
-</div>
-</section>
+                <?php
+                    include 'config.php';
+                    $sql = "SELECT * FROM user";
+                    $result = mysqli_query($conn, $sql);
+                    while ($res = mysqli_fetch_array($result)){
+
+                echo "<form method ='post' action = 'profile.php'>";
+
+                  echo "<li class='table-row'>";
+                    echo   "<div class='col col-1' data-label='JId'>" .$res['id']. "</div>";
+                    echo   "<div class='col col-2' data-label='Customer Name'>" .$res['name']. "</div>";
+                    echo   "<div class='col col-3' data-label='Amount'>" .$res['email']. "</div>";
+                    echo    "<div class='col col-4' data-label='Payment Status'>" .$res['amount']. "</div>";
+                    echo "  <div class='col col-1' data-label='Action'><a herf='profile.php'> <button type='submit' class='btn btn-lg btn-success' name='user' id='users1' value= '{$res['name']}' >View</button></a></div>";
+                    echo "</li>";
+                    echo "</form>";
+                  }
+                ?>
+          </ul>
+        </div>
+
+      </section>
+      <script type="text/javascript">
+      var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+      var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+        return new bootstrap.Popover(popoverTriggerEl)
+      })
+
+      var popover = new bootstrap.Popover(document.querySelector('.example-popover'), {
+      container: 'body'
+      })
+
+
+      </script>
   </body>
 </html>
